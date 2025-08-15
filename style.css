@@ -1468,22 +1468,28 @@ body.light-mode .list-item {
   .modal-image {
     flex-direction: column;
     gap: var(--spacing-md);
-    min-height: 200px;
+    min-height: 250px;
+    padding: var(--spacing-md);
+  }
+  
+  /* Hide background elements on mobile */
+  .books-preview,
+  .phone-mockup {
+    display: none;
+  }
+  
+  .promo-image {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .promo-img {
-    max-width: 90%;
-    max-height: 150px;
-  }
-  
-  .phone-mockup {
-    width: 200px;
-    height: 350px;
-  }
-  
-  .books-preview {
-    width: 100%;
-    max-width: 300px;
+    max-width: 100%;
+    max-height: 200px;
+    width: auto;
+    height: auto;
   }
 }
 
