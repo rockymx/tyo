@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio de Enlaces - Recursos Médicos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+                <i class="fas fa-sun sun-icon"></i>
+                <i class="fas fa-moon moon-icon"></i>
+            </button>
+            
+            <h1 class="title">Recursos Médicos</h1>
+            <p class="subtitle">Directorio de Enlaces Especializados</p>
+            
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="mailto:" class="social-link email" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="#" class="social-link facebook" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link whatsapp" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-link telegram" title="Telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Buscar categorías..." class="search-input">
+                <button id="clearSearch" class="clear-btn" style="display: none;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="cards-grid" id="cardsGrid">
+            <!-- Recent Additions -->
+            <div class="card" data-category="últimos agregados">
+                <div class="card-icon recent">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Últimos Agregados</h3>
+                    <p class="card-description">Contenido más reciente agregado a la biblioteca</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Spanish Content -->
+            <div class="card" data-category="nuevos en español">
+                <div class="card-icon spanish">
+                    <i class="fas fa-language"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Nuevos en Español</h3>
+                    <p class="card-description">Libros y recursos traducidos al español</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Surgical Approaches -->
+            <div class="card" data-category="abordajes">
+                <div class="card-icon approaches">
+                    <i class="fas fa-route"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Abordajes</h3>
+                    <p class="card-description">Técnicas y métodos de abordaje quirúrgico</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Anatomy -->
+            <div class="card" data-category="anatomía">
+                <div class="card-icon anatomy">
+                    <i class="fas fa-bone"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Anatomia -</h3>
+                    <p class="card-description">Recursos de anatomía humana y ortopédica</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- AO Foundation -->
+            <div class="card" data-category="ao">
+                <div class="card-icon ao">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">AO</h3>
+                    <p class="card-description">Fundación AO - Principios de osteosíntesis</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Arthroplasty -->
+            <div class="card" data-category="artroplastia">
+                <div class="card-icon arthroplasty">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Artroplastia</h3>
+                    <p class="card-description">Cirugía de reemplazo articular</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Arthroscopy -->
+            <div class="card" data-category="artroscopia">
+                <div class="card-icon arthroscopy">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Artroscopia</h3>
+                    <p class="card-description">Técnicas de cirugía mínimamente invasiva</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Campbell -->
+            <div class="card" data-category="campbell">
+                <div class="card-icon campbell">
+                    <i class="fas fa-book-medical"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Campbell</h3>
+                    <p class="card-description">Cirugía ortopédica de Campbell</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Clinical Cases -->
+            <div class="card" data-category="clínica">
+                <div class="card-icon clinical">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Clinica</h3>
+                    <p class="card-description">Casos clínicos y práctica médica</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Imaging -->
+            <div class="card" data-category="imagenología">
+                <div class="card-icon imaging">
+                    <i class="fas fa-x-ray"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Imagenología</h3>
+                    <p class="card-description">Diagnóstico por imágenes en ortopedia</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Kapandji -->
+            <div class="card" data-category="kapandji">
+                <div class="card-icon kapandji">
+                    <i class="fas fa-running"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Kapandji</h3>
+                    <p class="card-description">Fisiología articular de Kapandji</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Trauma Master -->
+            <div class="card" data-category="master de trauma">
+                <div class="card-icon trauma">
+                    <i class="fas fa-ambulance"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Master de Trauma</h3>
+                    <p class="card-description">Especialización en traumatología</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Operative Techniques -->
+            <div class="card" data-category="operative techniques">
+                <div class="card-icon operative">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Operative Techniques</h3>
+                    <p class="card-description">Técnicas quirúrgicas especializadas</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Orthopedics Review -->
+            <div class="card" data-category="orthopedics review">
+                <div class="card-icon review">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Orthopedics Review</h3>
+                    <p class="card-description">Revisiones y actualizaciones en ortopedia</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Ortopedia Deportiva -->
+            <div class="card" data-category="ortopedia deportiva">
+                <div class="card-icon sports">
+                    <i class="fas fa-running"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Ortopedia Deportiva</h3>
+                    <p class="card-description">Medicina deportiva y lesiones atléticas</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Ortopedia General -->
+            <div class="card" data-category="ortopedia general">
+                <div class="card-icon general">
+                    <i class="fas fa-bone"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Ortopedia General</h3>
+                    <p class="card-description">Principios generales de ortopedia</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Ortopedia Pediatrica -->
+            <div class="card" data-category="ortopedia pediatrica">
+                <div class="card-icon pediatric">
+                    <i class="fas fa-child"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Ortopedia Pediatrica</h3>
+                    <p class="card-description">Ortopedia en población pediátrica</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Qx Cadera -->
+            <div class="card" data-category="qx cadera">
+                <div class="card-icon hip">
+                    <i class="fas fa-bone"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Qx Cadera</h3>
+                    <p class="card-description">Cirugía de cadera y articulación coxofemoral</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Qx Columna -->
+            <div class="card" data-category="qx columna">
+                <div class="card-icon spine">
+                    <i class="fas fa-user-injured"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Qx Columna</h3>
+                    <p class="card-description">Cirugía de columna vertebral</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Qx de Hombro -->
+            <div class="card" data-category="qx hombro">
+                <div class="card-icon shoulder">
+                    <i class="fas fa-user-injured"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Qx de Hombro</h3>
+                    <p class="card-description">Cirugía de hombro y cintura escapular</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Qx Mano -->
+            <div class="card" data-category="qx mano">
+                <div class="card-icon hand">
+                    <i class="fas fa-hand-paper"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Qx Mano</h3>
+                    <p class="card-description">Cirugía de mano y muñeca</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Qx Pie y Tobillo -->
+            <div class="card" data-category="qx pie tobillo">
+                <div class="card-icon foot">
+                    <i class="fas fa-shoe-prints"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Qx Pie y Tobillo</h3>
+                    <p class="card-description">Cirugía de pie y tobillo</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Qx Rodilla -->
+            <div class="card" data-category="qx rodilla">
+                <div class="card-icon knee">
+                    <i class="fas fa-walking"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Qx Rodilla</h3>
+                    <p class="card-description">Cirugía de rodilla y articulación tibiofemoral</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Remplazo Articular -->
+            <div class="card" data-category="remplazo articular">
+                <div class="card-icon replacement">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Remplazo Articular</h3>
+                    <p class="card-description">Artroplastias y reemplazos articulares</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Rockwood -->
+            <div class="card" data-category="rockwood">
+                <div class="card-icon rockwood">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Rockwood</h3>
+                    <p class="card-description">Fracturas en adultos y niños - Rockwood</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Tumores -->
+            <div class="card" data-category="tumores">
+                <div class="card-icon tumors">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Tumores</h3>
+                    <p class="card-description">Oncología ortopédica y tumores óseos</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Varios -->
+            <div class="card" data-category="varios">
+                <div class="card-icon misc">
+                    <i class="fas fa-folder"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Varios</h3>
+                    <p class="card-description">Recursos diversos y misceláneos</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Consentimiento Informado -->
+            <div class="card" data-category="consentimiento informado">
+                <div class="card-icon consent">
+                    <i class="fas fa-file-signature"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Consentimiento Informado</h3>
+                    <p class="card-description">Documentos legales y consentimientos</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Promo -->
+            <div class="card" data-category="promo">
+                <div class="card-icon promo">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Promo !!</h3>
+                    <p class="card-description">Ofertas especiales y promociones</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Solicitar Acceso -->
+            <div class="card" data-category="solicitar acceso">
+                <div class="card-icon access">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Solicitar Acceso</h3>
+                    <p class="card-description">Solicita acceso a la biblioteca completa</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h3>No se encontraron resultados</h3>
+            <p>Intenta con otros términos de búsqueda</p>
+        </div>
+    </div>
+
+    <!-- Modal for Promo -->
+    <div class="modal-overlay" id="promoModal" style="display: none;">
+        <div class="modal-card">
+            <button class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-content">
+                <img src="img/promo.webp" alt="Promoción Especial" class="modal-image">
+                <div class="modal-info">
+                    <h3 class="modal-title">¡Oferta Especial!</h3>
+                    <p class="modal-description">Acceso completo a toda nuestra biblioteca médica con descuento exclusivo.</p>
+                    <button class="modal-contact-btn" id="contactBtn">
+                        <i class="fab fa-whatsapp"></i>
+                        Contactar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
