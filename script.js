@@ -4,14 +4,20 @@ const clearButton = document.getElementById('clearSearch');
 const cardsGrid = document.getElementById('cardsGrid');
 const noResults = document.getElementById('noResults');
 const themeToggle = document.getElementById('themeToggle');
-
-// Modal elements
+const favoritesToggle = document.getElementById('favoritesToggle');
+const favoritesCount = document.getElementById('favoritesCount');
+const skeletonContainer = document.getElementById('skeletonContainer');
+const headerSearch = document.getElementById('headerSearch');
+const promoButton = document.getElementById('promoButton');
 const promoModal = document.getElementById('promoModal');
-const closeModal = document.getElementById('closeModal');
-const contactBtn = document.getElementById('contactBtn');
+const modalClose = document.getElementById('modalClose');
 
 // Get all cards
-const cards = document.querySelectorAll('.card');
+let cards = document.querySelectorAll('.card');
+
+// Favorites system
+let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+let showingFavorites = false;
 
 // Theme functionality
 const initTheme = () => {
@@ -41,23 +47,11 @@ const toggleTheme = () => {
 
 // Event listeners
 themeToggle.addEventListener('click', toggleTheme);
-
-// Modal event listeners
-closeModal.addEventListener('click', closePromoModal);
-contactBtn.addEventListener('click', () => {
-    window.open('https://wa.link/s5xddq', '_blank');
-});
-
-// Close modal when clicking outside
+favoritesToggle.addEventListener('click', toggleFavoritesView);
+promoButton.addEventListener('click', openPromoModal);
+modalClose.addEventListener('click', closePromoModal);
 promoModal.addEventListener('click', (e) => {
     if (e.target === promoModal) {
-        closePromoModal();
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && promoModal.classList.contains('active')) {
         closePromoModal();
     }
 });
@@ -82,9 +76,14 @@ cards.forEach(card => {
     });
 });
 
-// Search functionality
+// Search functionality (optimized version)
 function handleSearch(e) {
     const searchTerm = e.target.value.toLowerCase().trim();
+    
+    // Expand search if typing
+    if (searchTerm && headerSearch.classList.contains('collapsed')) {
+        expandSearch();
+    }
     
     // Show/hide clear button
     clearButton.style.display = searchTerm ? 'block' : 'none';
@@ -96,14 +95,17 @@ function handleSearch(e) {
         const title = card.querySelector('.card-title').textContent.toLowerCase();
         const description = card.querySelector('.card-description').textContent.toLowerCase();
         
-        const isVisible = 
+        const matchesSearch = 
             category.includes(searchTerm) || 
             title.includes(searchTerm) || 
             description.includes(searchTerm);
+            
+        const shouldShow = showingFavorites 
+            ? (matchesSearch && favorites.includes(category))
+            : matchesSearch;
         
-        if (isVisible) {
+        if (shouldShow) {
             card.style.display = 'flex';
-            // Add staggered animation
             card.style.animationDelay = `${index * 0.1}s`;
             card.classList.add('fade-in');
             visibleCards++;
@@ -114,7 +116,24 @@ function handleSearch(e) {
     });
     
     // Show/hide no results message
-    if (visibleCards === 0 && searchTerm) {
+    if (visibleCards === 0 && (searchTerm || showingFavorites)) {
+        if (showingFavorites && favorites.length === 0) {
+            noResults.innerHTML = `
+                <div class="no-results-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>No tienes favoritos</h3>
+                <p>Agrega categorías a favoritos haciendo clic en el corazón</p>
+            `;
+        } else {
+            noResults.innerHTML = `
+                <div class="no-results-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>No se encontraron resultados</h3>
+                <p>Intenta con otro término de búsqueda</p>
+            `;
+        }
         noResults.style.display = 'block';
         cardsGrid.style.display = 'none';
     } else {
@@ -123,17 +142,34 @@ function handleSearch(e) {
     }
 }
 
-// Clear search
+// Clear search with favorites support
 function clearSearch() {
     searchInput.value = '';
     clearButton.style.display = 'none';
     noResults.style.display = 'none';
     cardsGrid.style.display = 'grid';
     
-    cards.forEach(card => {
-        card.style.display = 'flex';
-        card.classList.remove('fade-in');
-    });
+    if (showingFavorites) {
+        // If showing favorites, only show favorited cards
+        cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (favorites.includes(category)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+            card.classList.remove('fade-in');
+        });
+    } else {
+        // Show all cards
+        cards.forEach(card => {
+            card.style.display = 'flex';
+            card.classList.remove('fade-in');
+        });
+    }
+    
+    // Collapse search if empty and not showing favorites
+    collapseSearch();
     
     // Focus back to search input
     searchInput.focus();
@@ -145,12 +181,6 @@ function handleCardClick(e) {
     
     const cardTitle = this.querySelector('.card-title').textContent;
     const cardCategory = this.getAttribute('data-category');
-    
-    // Handle promo card specially
-    if (cardCategory.toLowerCase() === 'promo') {
-        openPromoModal();
-        return;
-    }
     
     // Define the links for each category
     const cardLinks = {
@@ -182,7 +212,6 @@ function handleCardClick(e) {
         'tumores': 'https://drive.google.com/drive/folders/1cQ0w10gtEEnRr4Z3mWpGtxSENaag-h7p?usp=drive_link',
         'varios': 'https://drive.google.com/drive/folders/1Wf_8LpjSUEip029fuZ_9f1-cVLOLzuvj?usp=drive_link',
         'consentimiento informado': 'https://drive.google.com/drive/folders/1biSatyiQLBwWe9RyXhcDxydMOSJCyXNa?usp=sharing',
-        'promo': 'https://wa.link/s5xddq',
         'solicitar acceso': 'https://wa.link/s5xddq'
     };
     
@@ -202,7 +231,7 @@ function handleCardClick(e) {
         console.log(`No link found for: ${cardTitle} (${cardCategory})`);
     }
     
-    // Or trigger a custom event
+    // Trigger a custom event
     document.dispatchEvent(new CustomEvent('cardClick', {
         detail: {
             title: cardTitle,
@@ -226,31 +255,215 @@ searchInput.addEventListener('keydown', (e) => {
     }
 });
 
+// Scroll to top function
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Search expansion functionality
+function expandSearch() {
+    if (headerSearch.classList.contains('collapsed')) {
+        headerSearch.classList.remove('collapsed');
+        headerSearch.classList.add('expanded');
+        setTimeout(() => {
+            searchInput.focus();
+        }, 300);
+    }
+}
+
+function collapseSearch() {
+    if (searchInput.value === '' && !showingFavorites) {
+        headerSearch.classList.remove('expanded');
+        headerSearch.classList.add('collapsed');
+    }
+}
+
+// Click outside to collapse search
+document.addEventListener('click', (e) => {
+    if (!headerSearch.contains(e.target) && searchInput.value === '') {
+        collapseSearch();
+    }
+});
+
+// Favorites functionality
+function toggleFavorite(button) {
+    if (event) event.stopPropagation();
+    
+    const card = button.closest('.card');
+    const category = card.getAttribute('data-category');
+    const icon = button.querySelector('i');
+    
+    if (favorites.includes(category)) {
+        // Remove from favorites
+        favorites = favorites.filter(fav => fav !== category);
+        icon.className = 'far fa-heart';
+        button.classList.remove('favorited');
+        button.title = 'Agregar a favoritos';
+    } else {
+        // Add to favorites
+        favorites.push(category);
+        icon.className = 'fas fa-heart';
+        button.classList.add('favorited');
+        button.title = 'Quitar de favoritos';
+        
+        // Heart animation
+        button.style.animation = 'heartbeat 0.3s ease-in-out';
+        setTimeout(() => {
+            button.style.animation = '';
+        }, 300);
+    }
+    
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    updateFavoritesCount();
+}
+
+function updateFavoritesCount() {
+    const count = favorites.length;
+    if (count > 0) {
+        favoritesCount.textContent = count;
+        favoritesCount.style.display = 'flex';
+    } else {
+        favoritesCount.style.display = 'none';
+    }
+}
+
+function initFavorites() {
+    updateFavoritesCount();
+    
+    cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const favoriteBtn = card.querySelector('.favorite-btn');
+        
+        if (favorites.includes(category)) {
+            favoriteBtn.classList.add('favorited');
+            favoriteBtn.querySelector('i').className = 'fas fa-heart';
+            favoriteBtn.title = 'Quitar de favoritos';
+        }
+    });
+}
+
+function toggleFavoritesView() {
+    showingFavorites = !showingFavorites;
+    
+    if (showingFavorites) {
+        // Show only favorites
+        favoritesToggle.style.color = 'var(--danger)';
+        favoritesToggle.title = 'Mostrar todos';
+        
+        cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (favorites.includes(category)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        if (favorites.length === 0) {
+            noResults.innerHTML = `
+                <div class="no-results-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>No tienes favoritos</h3>
+                <p>Agrega categorías a favoritos haciendo clic en el corazón</p>
+            `;
+            noResults.style.display = 'block';
+            cardsGrid.style.display = 'none';
+        } else {
+            noResults.style.display = 'none';
+            cardsGrid.style.display = 'grid';
+        }
+    } else {
+        // Show all cards
+        favoritesToggle.style.color = '';
+        favoritesToggle.title = 'Ver favoritos';
+        
+        cards.forEach(card => {
+            card.style.display = 'flex';
+        });
+        
+        noResults.style.display = 'none';
+        cardsGrid.style.display = 'grid';
+    }
+}
+
+// Lazy loading simulation
+function showSkeletonLoading() {
+    skeletonContainer.style.display = 'grid';
+    cardsGrid.style.display = 'none';
+}
+
+function hideSkeletonLoading() {
+    skeletonContainer.style.display = 'none';
+    cardsGrid.style.display = 'grid';
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize theme
     initTheme();
     
-    // Add initial animation classes
-    cards.forEach((card, index) => {
-        setTimeout(() => {
-            card.classList.add('loaded');
-        }, index * 100);
-    });
+    // Refresh cards selection to include all cards
+    cards = document.querySelectorAll('.card');
     
-    // Focus search input
-    searchInput.focus();
+    // Show skeleton loading briefly
+    showSkeletonLoading();
+    
+    // Simulate loading time
+    setTimeout(() => {
+        hideSkeletonLoading();
+        
+        // Add initial animation classes with stagger
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('loaded');
+            }, index * 50);
+        });
+        
+        // Initialize favorites
+        initFavorites();
+    }, 800);
+    
+    // Focus search input after loading
+    setTimeout(() => {
+        searchInput.focus();
+    }, 1200);
+});
+
+// Remove duplicate event listener setup
+searchInput.removeEventListener('input', handleSearch);
+searchInput.addEventListener('input', handleSearch);
+
+// Promotion Modal Functions
+function openPromoModal() {
+    promoModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePromoModal() {
+    promoModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && promoModal.classList.contains('active')) {
+        closePromoModal();
+    }
 });
 
 // Add fade-in animation class
 const style = document.createElement('style');
 style.textContent = `
     .fade-in {
-        animation: fadeInUp 0.5s ease-out;
+        animation: fadeInUp 0.5s ease-out forwards;
     }
     
     .card.loaded {
-        animation: fadeInUp 0.6s ease-out;
+        animation: fadeInUp 0.6s ease-out forwards;
     }
 `;
 document.head.appendChild(style);
@@ -301,31 +514,14 @@ function addCard(cardData) {
     });
 }
 
-// Modal functions
-function openPromoModal() {
-    promoModal.style.display = 'flex';
-    // Force reflow before adding active class for animation
-    promoModal.offsetHeight;
-    promoModal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-}
-
-function closePromoModal() {
-    promoModal.classList.remove('active');
-    document.body.style.overflow = ''; // Restore scrolling
-    
-    // Wait for animation to complete before hiding
-    setTimeout(() => {
-        if (!promoModal.classList.contains('active')) {
-            promoModal.style.display = 'none';
-        }
-    }, 300);
-}
-
 // Export functions for external use
 window.LinkDirectory = {
     addCard,
     clearSearch,
+    toggleFavorite,
+    scrollToTop,
+    expandSearch,
+    collapseSearch,
     handleSearch: (term) => {
         searchInput.value = term;
         handleSearch({ target: searchInput });
