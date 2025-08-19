@@ -1,0 +1,30 @@
+{
+  "name": "tyo-directory",
+  "version": "1.0.0",
+  "description": "TyO - Directorio de Enlaces Especializados para recursos médicos y ortopédicos",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 3000",
+    "start": "python3 -m http.server 8080",
+    "build": "echo 'Static site - no build needed'",
+    "preview": "python3 -m http.server 4173"
+  },
+  "keywords": [
+    "medical",
+    "orthopedics",
+    "directory",
+    "resources",
+    "healthcare"
+  ],
+  "author": "TyO Directory",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tyo-directory/tyo-directory.git"
+  },
+  "homepage": "https://tyo-directory.com",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
