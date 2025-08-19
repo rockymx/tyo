@@ -10,8 +10,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="TyO - Directorio especializado de enlaces médicos y recursos ortopédicos. Accede a libros, guías y material educativo de alta calidad.">
+    <meta name="keywords" content="ortopedia, traumatología, medicina, libros médicos, recursos educativos, AO, Campbell, Rockwood">
+    <meta name="author" content="TyO Directory">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="TyO - Directorio de Enlaces Especializados">
+    <meta property="og:description" content="Accede a recursos médicos especializados en ortopedia y traumatología">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tyo-directory.com">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TyO - Directorio de Enlaces Especializados">
+    <meta name="twitter:description" content="Accede a recursos médicos especializados en ortopedia y traumatología">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
     <!-- Preload critical resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
     <!-- Fixed Header -->
@@ -35,10 +61,10 @@
                 
                 <!-- Social Links -->
                 <div class="social-links">
-                    <a href="#" class="social-link facebook" title="Facebook">
+                    <a href="#" class="social-link facebook" title="Facebook" rel="noopener noreferrer">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="social-link whatsapp" title="WhatsApp">
+                    <a href="https://wa.link/s5xddq" class="social-link whatsapp" title="WhatsApp" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
@@ -648,6 +674,22 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script type="module" src="js/app.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

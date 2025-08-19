@@ -1,0 +1,207 @@
+{
+  "categories": {
+    "últimos agregados": {
+      "title": "Últimos Agregados",
+      "description": "Contenido más reciente agregado a la biblioteca",
+      "icon": "fas fa-clock",
+      "color": "recent",
+      "url": "https://drive.google.com/drive/folders/1LG0VXkdP_s2c8kwUTgYTKy2R0tDqI8RP?usp=drive_link"
+    },
+    "nuevos en español": {
+      "title": "Nuevos en Español",
+      "description": "Libros y recursos traducidos al español",
+      "icon": "fas fa-language",
+      "color": "spanish",
+      "url": "https://drive.google.com/drive/folders/11IzBy3whtmikTG2_mJjP8EmqA2DOYYlF?usp=drive_link"
+    },
+    "abordajes": {
+      "title": "Abordajes",
+      "description": "Técnicas y métodos de abordaje quirúrgico",
+      "icon": "fas fa-route",
+      "color": "approaches",
+      "url": "https://drive.google.com/drive/folders/1h09T4Ez9xPps5unGhK4XqIGWQD7ckZDQ?usp=drive_link"
+    },
+    "anatomía": {
+      "title": "Anatomia -",
+      "description": "Recursos de anatomía humana y ortopédica",
+      "icon": "fas fa-bone",
+      "color": "anatomy",
+      "url": "https://drive.google.com/drive/folders/1AX5wudp3i1TRuco5kNGcKnaFapb_XG1L?usp=drive_link"
+    },
+    "ao": {
+      "title": "AO",
+      "description": "Fundación AO - Principios de osteosíntesis",
+      "icon": "fas fa-tools",
+      "color": "ao",
+      "url": "https://drive.google.com/drive/folders/130SucFTa1yWY1GTEFUhO6MniQmhwKxD2?usp=sharing"
+    },
+    "artroplastia": {
+      "title": "Artroplastia",
+      "description": "Cirugía de reemplazo articular",
+      "icon": "fas fa-cog",
+      "color": "arthroplasty",
+      "url": "https://drive.google.com/drive/folders/1bSruX2U1NASFDQmTHtlykBbdAL8hAg3o?usp=drive_link"
+    },
+    "artroscopia": {
+      "title": "Artroscopia",
+      "description": "Técnicas de cirugía mínimamente invasiva",
+      "icon": "fas fa-search-plus",
+      "color": "arthroscopy",
+      "url": "https://drive.google.com/drive/folders/1LrO-tT0-47XISNysjRCLTZSO74Tv2SfJ?usp=drive_link"
+    },
+    "campbell": {
+      "title": "Campbell",
+      "description": "Cirugía ortopédica de Campbell",
+      "icon": "fas fa-book-medical",
+      "color": "campbell",
+      "url": "https://drive.google.com/drive/folders/1SrsTmMpqyQLJrxxp_MmPNLM92Jjhuq_-?usp=drive_link"
+    },
+    "clínica": {
+      "title": "Clinica",
+      "description": "Casos clínicos y práctica médica",
+      "icon": "fas fa-stethoscope",
+      "color": "clinical",
+      "url": "https://drive.google.com/drive/folders/1D3ZIjadlTaGKiVX8m7A-WKyRA9MC_K8o?usp=drive_link"
+    },
+    "imagenología": {
+      "title": "Imagenología",
+      "description": "Diagnóstico por imágenes en ortopedia",
+      "icon": "fas fa-x-ray",
+      "color": "imaging",
+      "url": "https://drive.google.com/drive/folders/1Q0lzcMqroJkIjoTtE50Gu-_v87eGMbqV?usp=drive_link"
+    },
+    "kapandji": {
+      "title": "Kapandji",
+      "description": "Fisiología articular de Kapandji",
+      "icon": "fas fa-running",
+      "color": "kapandji",
+      "url": "https://drive.google.com/drive/folders/1x4Jnu-g4YHGTWNWWJD4xIT6aT3dl4xo1?usp=drive_link"
+    },
+    "master de trauma": {
+      "title": "Master de Trauma",
+      "description": "Especialización en traumatología",
+      "icon": "fas fa-ambulance",
+      "color": "trauma",
+      "url": "https://drive.google.com/drive/folders/1pszVLeOQZ6oTKK2JHutF8-205OrLnmCG?usp=drive_link"
+    },
+    "operative techniques": {
+      "title": "Operative Techniques",
+      "description": "Técnicas quirúrgicas especializadas",
+      "icon": "fas fa-user-md",
+      "color": "operative",
+      "url": "https://drive.google.com/drive/folders/1MNsv8T7_E0LrXaoGQqTKSlIQo4Q2U2bA?usp=drive_link"
+    },
+    "orthopedics review": {
+      "title": "Orthopedics Review",
+      "description": "Revisiones y actualizaciones en ortopedia",
+      "icon": "fas fa-clipboard-check",
+      "color": "review",
+      "url": "https://drive.google.com/drive/folders/1lHAxtCrf78URKWc1xBFnztGBD7rUHcUZ?usp=drive_link"
+    },
+    "ortopedia deportiva": {
+      "title": "Ortopedia Deportiva",
+      "description": "Medicina deportiva y lesiones atléticas",
+      "icon": "fas fa-running",
+      "color": "sports",
+      "url": "https://drive.google.com/drive/folders/1CKcYurQTS1PAnqmcT7x7_tY4kL7mWlYt?usp=drive_link"
+    },
+    "ortopedia general": {
+      "title": "Ortopedia General",
+      "description": "Principios generales de ortopedia",
+      "icon": "fas fa-bone",
+      "color": "general",
+      "url": "https://drive.google.com/drive/folders/1Zemgi5FKW3uj2BT2QQcyyV--OLUfZhpT?usp=drive_link"
+    },
+    "ortopedia pediatrica": {
+      "title": "Ortopedia Pediatrica",
+      "description": "Ortopedia en población pediátrica",
+      "icon": "fas fa-child",
+      "color": "pediatric",
+      "url": "https://drive.google.com/drive/folders/1m2Ifrvfoyx-QqTDDYx6VNHxdlgHsHCx-?usp=drive_link"
+    },
+    "qx cadera": {
+      "title": "Qx Cadera",
+      "description": "Cirugía de cadera y pelvis",
+      "icon": "fas fa-bone",
+      "color": "hip",
+      "url": "https://drive.google.com/drive/folders/1EVSuiOTX1xHzz3khd_790LUTXPqu7jbW?usp=drive_link"
+    },
+    "qx columna": {
+      "title": "Qx Columna",
+      "description": "Cirugía de columna vertebral",
+      "icon": "fas fa-spine",
+      "color": "spine",
+      "url": "https://drive.google.com/drive/folders/1d9xbrTbGJxNF86IR7FMtk1_rNPvPuClF?usp=drive_link"
+    },
+    "qx hombro": {
+      "title": "Qx Hombro",
+      "description": "Cirugía de hombro y extremidad superior",
+      "icon": "fas fa-bone",
+      "color": "shoulder",
+      "url": "https://drive.google.com/drive/folders/1PKnARSo1pJ84m_6LuuOPRvnQXO3WosTW?usp=drive_link"
+    },
+    "qx mano": {
+      "title": "Qx Mano",
+      "description": "Cirugía de mano y muñeca",
+      "icon": "fas fa-hand",
+      "color": "hand",
+      "url": "https://drive.google.com/drive/folders/1_1g8QopciynPN7HuxouH_7v_1blI0m81?usp=drive_link"
+    },
+    "qx pie tobillo": {
+      "title": "Qx Pie Tobillo",
+      "description": "Cirugía de pie y tobillo",
+      "icon": "fas fa-socks",
+      "color": "foot",
+      "url": "https://drive.google.com/drive/folders/1vDmxFvBD9E1dRr_fQq3ANZvNn-46C-Bj?usp=drive_link"
+    },
+    "qx rodilla": {
+      "title": "Qx Rodilla",
+      "description": "Cirugía de rodilla y meniscos",
+      "icon": "fas fa-bone",
+      "color": "knee",
+      "url": "https://drive.google.com/drive/folders/13KIZx4HrDA7KBXNnireEwPnhgng58ZjO?usp=drive_link"
+    },
+    "remplazo articular": {
+      "title": "Remplazo Articular",
+      "description": "Artroplastias y prótesis articulares",
+      "icon": "fas fa-cogs",
+      "color": "replacement",
+      "url": "https://drive.google.com/drive/folders/1bSruX2U1NASFDQmTHtlykBbdAL8hAg3o?usp=drive_link"
+    },
+    "rockwood": {
+      "title": "Rockwood",
+      "description": "Fracturas en adultos y niños - Rockwood",
+      "icon": "fas fa-book",
+      "color": "rockwood",
+      "url": "https://drive.google.com/drive/folders/1xJpDRDKbUcQ6EYjfIrnCsL5oi6tZ0iqz?usp=drive_link"
+    },
+    "tumores": {
+      "title": "Tumores",
+      "description": "Tumores óseos y de tejidos blandos",
+      "icon": "fas fa-microscope",
+      "color": "tumors",
+      "url": "https://drive.google.com/drive/folders/1cQ0w10gtEEnRr4Z3mWpGtxSENaag-h7p?usp=drive_link"
+    },
+    "varios": {
+      "title": "Varios",
+      "description": "Recursos diversos y misceláneos",
+      "icon": "fas fa-folder",
+      "color": "various",
+      "url": "https://drive.google.com/drive/folders/1Wf_8LpjSUEip029fuZ_9f1-cVLOLzuvj?usp=drive_link"
+    },
+    "consentimiento informado": {
+      "title": "Consentimiento Informado",
+      "description": "Formatos de consentimiento informado",
+      "icon": "fas fa-file-signature",
+      "color": "consent",
+      "url": "https://drive.google.com/drive/folders/1biSatyiQLBwWe9RyXhcDxydMOSJCyXNa?usp=sharing"
+    },
+    "solicitar acceso": {
+      "title": "Solicitar Acceso",
+      "description": "Solicita acceso completo a la biblioteca",
+      "icon": "fas fa-key",
+      "color": "access",
+      "url": "https://wa.link/s5xddq"
+    }
+  }
+}

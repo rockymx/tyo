@@ -1,0 +1,82 @@
+/* Footer styles */
+
+.footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  margin-top: var(--spacing-4xl);
+  padding: var(--spacing-sm) 0;
+  transition: var(--theme-transition);
+}
+
+body.light-mode .footer {
+  background: var(--bg-card-light);
+  border-top-color: var(--border-color-light);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+body.light-mode .footer-text {
+  color: var(--text-secondary-light);
+}
+
+.footer-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(37, 211, 102, 0.6);
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.footer-whatsapp:hover {
+  background: rgba(37, 211, 102, 0.8);
+  color: white;
+  transform: scale(1.1);
+  text-decoration: none;
+}
+
+.footer-whatsapp:focus {
+  outline: 2px solid var(--whatsapp);
+  outline-offset: 2px;
+}
+
+/* Mobile Footer Styles */
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--spacing-xs) 0;
+    margin-top: var(--spacing-xl);
+  }
+  
+  .footer-content {
+    gap: var(--spacing-xs);
+  }
+  
+  .footer-text {
+    font-size: 0.75rem;
+  }
+  
+  .footer-whatsapp {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+  }
+}
