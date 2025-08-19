@@ -3,9 +3,12 @@
  */
 
 // Debounce function to limit function calls
-export function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
+export function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timeout: NodeJS.Timeout;
+  return function executedFunction(...args: Parameters<T>) {
     const later = () => {
       clearTimeout(timeout);
       func(...args);
@@ -16,13 +19,14 @@ export function debounce(func, wait) {
 }
 
 // Throttle function to limit function calls
-export function throttle(func, limit) {
-  let inThrottle;
-  return function() {
-    const args = arguments;
-    const context = this;
+export function throttle<T extends (...args: any[]) => any>(
+  func: T,
+  limit: number
+): (...args: Parameters<T>) => void {
+  let inThrottle: boolean;
+  return function(...args: Parameters<T>) {
     if (!inThrottle) {
-      func.apply(context, args);
+      func.apply(this, args);
       inThrottle = true;
       setTimeout(() => inThrottle = false, limit);
     }
@@ -30,7 +34,7 @@ export function throttle(func, limit) {
 }
 
 // Smooth scroll to element
-export function scrollToElement(element, offset = 0) {
+export function scrollToElement(element: HTMLElement, offset: number = 0): void {
   const elementPosition = element.offsetTop - offset;
   window.scrollTo({
     top: elementPosition,
@@ -39,7 +43,7 @@ export function scrollToElement(element, offset = 0) {
 }
 
 // Scroll to top function
-export function scrollToTop() {
+export function scrollToTop(): void {
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
@@ -47,17 +51,17 @@ export function scrollToTop() {
 }
 
 // Generate unique ID
-export function generateId() {
+export function generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
 // Sanitize string for use as CSS class or ID
-export function sanitizeString(str) {
+export function sanitizeString(str: string): string {
   return str.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 }
 
 // Format date
-export function formatDate(date) {
+export function formatDate(date: Date): string {
   return new Intl.DateTimeFormat('es-ES', {
     year: 'numeric',
     month: 'long',
@@ -66,7 +70,7 @@ export function formatDate(date) {
 }
 
 // Check if element is in viewport
-export function isInViewport(element) {
+export function isInViewport(element: HTMLElement): boolean {
   const rect = element.getBoundingClientRect();
   return (
     rect.top >= 0 &&
@@ -78,47 +82,60 @@ export function isInViewport(element) {
 
 // Local storage helpers with error handling
 export const storage = {
-  get(key, defaultValue = null) {
+  get<T>(key: string, defaultValue: T): T {
+    if (typeof window === 'undefined') return defaultValue;
+    
     try {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : defaultValue;
     } catch (error) {
-      console.warn(`Error reading from localStorage: ${error.message}`);
+      console.warn(`Error reading from localStorage: ${error}`);
       return defaultValue;
     }
   },
 
-  set(key, value) {
+  set<T>(key: string, value: T): boolean {
+    if (typeof window === 'undefined') return false;
+    
     try {
       localStorage.setItem(key, JSON.stringify(value));
       return true;
     } catch (error) {
-      console.warn(`Error writing to localStorage: ${error.message}`);
+      console.warn(`Error writing to localStorage: ${error}`);
       return false;
     }
   },
 
-  remove(key) {
+  remove(key: string): boolean {
+    if (typeof window === 'undefined') return false;
+    
     try {
       localStorage.removeItem(key);
       return true;
     } catch (error) {
-      console.warn(`Error removing from localStorage: ${error.message}`);
+      console.warn(`Error removing from localStorage: ${error}`);
       return false;
     }
   }
 };
 
 // Error handler
-export function handleError(error, context = '') {
+export function handleError(error: Error, context: string = ''): void {
   console.error(`Error in ${context}:`, error);
-  
-  // You could extend this to send errors to a logging service
-  // or show user-friendly error messages
+}
+
+// URL validation
+export function isValidUrl(string: string): boolean {
+  try {
+    new URL(string);
+    return true;
+  } catch (_) {
+    return false;
+  }
 }
 
 // Animation helpers
-export function addAnimation(element, animationClass, duration = 300) {
+export function addAnimation(element: HTMLElement, animationClass: string, duration: number = 300): Promise<void> {
   return new Promise((resolve) => {
     element.classList.add(animationClass);
     
@@ -141,10 +158,10 @@ export function addAnimation(element, animationClass, duration = 300) {
 }
 
 // Keyboard navigation helpers
-export function trapFocus(element) {
+export function trapFocus(element: HTMLElement): void {
   const focusableElements = element.querySelectorAll(
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-  );
+  ) as NodeListOf<HTMLElement>;
   
   const firstElement = focusableElements[0];
   const lastElement = focusableElements[focusableElements.length - 1];
@@ -170,21 +187,11 @@ export function trapFocus(element) {
 }
 
 // Performance helpers
-export function requestIdleCallback(callback, options = {}) {
-  if (window.requestIdleCallback) {
+export function requestIdleCallback(callback: () => void, options: { timeout?: number } = {}): number {
+  if (typeof window !== 'undefined' && window.requestIdleCallback) {
     return window.requestIdleCallback(callback, options);
   } else {
     // Fallback for browsers that don't support requestIdleCallback
-    return setTimeout(callback, 1);
-  }
-}
-
-// URL validation
-export function isValidUrl(string) {
-  try {
-    new URL(string);
-    return true;
-  } catch (_) {
-    return false;
+    return setTimeout(callback, 1) as any;
   }
 }
