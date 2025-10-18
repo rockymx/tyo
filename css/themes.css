@@ -1,0 +1,206 @@
+/* Theme Styles */
+
+/* Light theme overrides */
+.light-theme {
+  color: var(--text-primary-light);
+  background: linear-gradient(135deg, var(--bg-primary-light) 0%, var(--bg-secondary-light) 100%);
+}
+
+.light-theme h1,
+.light-theme h2,
+.light-theme h3,
+.light-theme h4,
+.light-theme h5,
+.light-theme h6 {
+  color: var(--text-primary-light);
+}
+
+.light-theme p {
+  color: var(--text-secondary-light);
+}
+
+.light-theme .title {
+  color: var(--text-primary-light);
+}
+
+.light-theme .subtitle {
+  color: var(--text-secondary-light);
+}
+
+.light-theme .header {
+  background: var(--bg-card-light);
+  border-bottom-color: var(--border-color-light);
+}
+
+.light-theme .header-search.collapsed .search-box {
+  background: var(--bg-input-light);
+  border-color: var(--border-color-light);
+}
+
+.light-theme .header-search .search-input {
+  background: var(--bg-input-light);
+  border-color: var(--border-color-light);
+  color: var(--text-primary-light);
+}
+
+.light-theme .header-search .search-input::placeholder {
+  color: var(--text-muted-light);
+}
+
+.light-theme .header-search .search-icon {
+  color: var(--text-muted-light);
+}
+
+.light-theme .header-search .clear-btn {
+  color: var(--text-muted-light);
+}
+
+.light-theme .header-search .clear-btn:hover {
+  color: var(--text-secondary-light);
+  background: var(--border-color-light);
+}
+
+.light-theme .social-link {
+  color: var(--text-muted-light);
+  background: var(--bg-input-light);
+  border-color: var(--border-color-light);
+}
+
+.light-theme .favorites-toggle,
+.light-theme .theme-toggle,
+.light-theme .promo-button {
+  background: var(--bg-input-light);
+  border-color: var(--border-color-light);
+  color: var(--text-primary-light);
+}
+
+.light-theme .card {
+  background: var(--bg-card-light);
+  border-color: var(--border-color-light);
+}
+
+.light-theme .card-title {
+  color: var(--text-primary-light);
+}
+
+.light-theme .card-description {
+  color: var(--text-secondary-light);
+}
+
+.light-theme .card-icon {
+  background: var(--bg-card-light);
+  border-color: var(--border-color-light);
+  color: var(--text-muted-light);
+}
+
+.light-theme .card-arrow {
+  color: var(--text-muted-light);
+}
+
+.light-theme .favorite-btn {
+  color: var(--text-muted-light);
+}
+
+.light-theme .no-results-icon {
+  background: var(--border-color-light);
+}
+
+.light-theme .no-results-icon i {
+  color: var(--text-muted-light);
+}
+
+.light-theme .no-results h3 {
+  color: var(--text-primary-light);
+}
+
+.light-theme .no-results p {
+  color: var(--text-secondary-light);
+}
+
+.light-theme .skeleton-card {
+  background: var(--bg-card-light);
+  border-color: var(--border-color-light);
+}
+
+.light-theme .skeleton-card::after {
+  background: var(--border-color-light);
+}
+
+.light-theme .modal-content {
+  background: var(--bg-card-light);
+}
+
+.light-theme .modal-title {
+  color: var(--text-primary-light);
+}
+
+.light-theme .modal-description {
+  color: var(--text-secondary-light);
+}
+
+.light-theme .phone-screen {
+  background: var(--bg-primary-light);
+}
+
+.light-theme .app-header {
+  color: var(--text-primary-light);
+  border-bottom-color: var(--border-color-light);
+}
+
+.light-theme .list-item {
+  background: var(--bg-card-light);
+  color: var(--text-secondary-light);
+  border-color: var(--border-color-light);
+}
+
+.light-theme .footer {
+  background: var(--bg-card-light);
+  border-top-color: var(--border-color-light);
+}
+
+.light-theme .footer-text {
+  color: var(--text-secondary-light);
+}
+
+.light-theme input,
+.light-theme textarea,
+.light-theme select {
+  color: var(--text-primary-light);
+  background: var(--bg-input-light);
+  border-color: var(--border-color-light);
+}
+
+.light-theme input::placeholder,
+.light-theme textarea::placeholder {
+  color: var(--text-muted-light);
+}
+
+/* Theme transition animations */
+.theme-transition {
+  transition: var(--theme-transition);
+}
+
+/* Theme toggle icon animation */
+.theme-toggle i {
+  transition: var(--transition);
+}
+
+.dark-theme .theme-toggle .fa-sun {
+  opacity: 0;
+  transform: rotate(180deg);
+}
+
+.dark-theme .theme-toggle .fa-moon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.light-theme .theme-toggle .fa-sun {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.light-theme .theme-toggle .fa-moon {
+  opacity: 0;
+  transform: rotate(-180deg);
+}
