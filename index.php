@@ -1,3 +1,12 @@
+<?php
+// Optional: Check if user is logged in (not required, but provides user info)
+require_once __DIR__ . '/includes/config.php';
+$isLoggedIn = isset($_SESSION['user_id']);
+$currentUser = $isLoggedIn ? [
+    'username' => $_SESSION['username'],
+    'email' => $_SESSION['email']
+] : null;
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -70,6 +79,30 @@
             </div>
             
             <div class="header-right">
+                <!-- User Menu / Login -->
+                <?php if ($isLoggedIn): ?>
+                    <div class="user-menu">
+                        <button class="user-button" id="userButton" title="<?php echo htmlspecialchars($currentUser['username']); ?>">
+                            <i class="fas fa-user"></i>
+                            <span class="user-name"><?php echo htmlspecialchars($currentUser['username']); ?></span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown" style="display: none;">
+                            <div class="user-info">
+                                <strong><?php echo htmlspecialchars($currentUser['username']); ?></strong>
+                                <small><?php echo htmlspecialchars($currentUser['email']); ?></small>
+                            </div>
+                            <a href="auth/logout.php" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                            </a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="auth/login.php" class="login-button" title="Iniciar Sesión">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span class="login-text">Iniciar Sesión</span>
+                    </a>
+                <?php endif; ?>
+
                 <!-- Promotion Button -->
                 <button class="promo-button" id="promoButton" title="¡Oferta Especial!">
                     <i class="fas fa-gift"></i>
@@ -187,6 +220,7 @@
     <script src="js/search.js"></script>
     <script src="js/favorites.js"></script>
     <script src="js/modal.js"></script>
+    <script src="js/user-menu.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
