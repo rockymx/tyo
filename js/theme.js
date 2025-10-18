@@ -12,13 +12,23 @@ class ThemeManager {
     }
 
     bindEvents() {
-        document.addEventListener('DOMContentLoaded', () => {
-            this.themeToggle = document.getElementById('themeToggle');
-            if (this.themeToggle) {
-                this.themeToggle.addEventListener('click', () => this.toggleTheme());
-            }
+        // Immediately try to get the button if DOM is already loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                this.setupButton();
+            });
+        } else {
+            // DOM already loaded
+            this.setupButton();
+        }
+    }
+
+    setupButton() {
+        this.themeToggle = document.getElementById('themeToggle');
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => this.toggleTheme());
             this.updateThemeIcon();
-        });
+        }
     }
 
     applyTheme(theme) {
