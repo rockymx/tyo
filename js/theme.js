@@ -26,6 +26,7 @@ class ThemeManager {
         document.body.classList.add(`${theme}-theme`);
         this.currentTheme = theme;
         storage.set('theme', theme);
+        this.updateThemeIcon();
     }
 
     toggleTheme() {
@@ -43,14 +44,19 @@ class ThemeManager {
     }
 
     updateThemeIcon() {
+        if (!this.themeToggle) {
+            this.themeToggle = document.getElementById('themeToggle');
+        }
         if (!this.themeToggle) return;
-        
+
         const icon = this.themeToggle.querySelector('i');
         if (icon) {
-            icon.className = this.currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            // Show sun icon when dark theme (to switch to light)
+            // Show moon icon when light theme (to switch to dark)
+            icon.className = this.currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         }
-        
-        const title = this.currentTheme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro';
+
+        const title = this.currentTheme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
         this.themeToggle.setAttribute('title', title);
     }
 
