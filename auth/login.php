@@ -231,6 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
+    <script src="../js/storage.js"></script>
     <script src="../js/theme.js"></script>
 </body>
 </html>
