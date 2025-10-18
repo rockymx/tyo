@@ -18,10 +18,18 @@ class StorageService {
 
     get(key, defaultValue = null) {
         if (!this.isAvailable) return defaultValue;
-        
+
         try {
             const item = localStorage.getItem(key);
-            return item ? JSON.parse(item) : defaultValue;
+            if (!item) return defaultValue;
+
+            // Try to parse as JSON, if it fails return the raw value
+            try {
+                return JSON.parse(item);
+            } catch {
+                // If it's not valid JSON, return the raw string value
+                return item;
+            }
         } catch (error) {
             console.warn(`Error reading from localStorage key "${key}":`, error);
             return defaultValue;

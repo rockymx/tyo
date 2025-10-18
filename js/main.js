@@ -44,21 +44,40 @@ class TyOApp {
 
     async loadData() {
         try {
+            // Try to fetch the JSON file
             const response = await fetch('data/links.json');
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const data = await response.json();
             this.categories = data.categories;
             this.filteredCategories = { ...this.categories };
-            
+
             // Simulate loading delay for better UX
             setTimeout(() => {
                 this.renderCards();
                 this.hideLoading();
             }, 800);
-            
+
         } catch (error) {
-            console.error('Error loading data:', error);
-            this.showError('Error al cargar los datos');
-            this.hideLoading();
+            console.warn('Error loading data from file, trying embedded data:', error);
+
+            // Fallback: try to load from window.EMBEDDED_DATA if fetch fails (for file:// protocol)
+            if (window.EMBEDDED_DATA && window.EMBEDDED_DATA.categories) {
+                this.categories = window.EMBEDDED_DATA.categories;
+                this.filteredCategories = { ...this.categories };
+
+                setTimeout(() => {
+                    this.renderCards();
+                    this.hideLoading();
+                }, 800);
+            } else {
+                console.error('Error loading data:', error);
+                this.showError('Error al cargar los datos. Por favor, ejecuta la aplicación con un servidor local (npm run dev)');
+                this.hideLoading();
+            }
         }
     }
 
