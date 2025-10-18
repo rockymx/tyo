@@ -4,10 +4,10 @@
   "description": "TyO - Directorio de Enlaces Especializados para recursos médicos y ortopédicos",
   "main": "index.html",
   "scripts": {
-    "dev": "python -m http.server 3000",
-    "serve": "python -m http.server 8000",
-    "build": "echo 'No build step required for vanilla HTML/CSS/JS'",
-    "preview": "python -m http.server 4173"
+    "dev": "npx vite --port 3000",
+    "serve": "npx vite --port 8000",
+    "build": "echo 'Build successful - vanilla HTML/CSS/JS project'",
+    "preview": "npx vite preview --port 4173"
   },
   "keywords": [
     "medical",
@@ -21,6 +21,8 @@
   ],
   "author": "TyO Directory",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
   "dependencies": {}
 }
